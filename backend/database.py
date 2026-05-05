@@ -38,4 +38,13 @@ class DatabaseManager():
             )
             Transactions.append(t)
         return Transactions
-
+    def delete_transaction(self, id):
+        self.cursor.execute("DELETE FROM TRANSACTIONS WHERE ID = ?", (id,))
+        self.conn.commit()
+    def update_transaction(self, id, amount, category, t_type, date, description):
+        self.cursor.execute("""
+            UPDATE TRANSACTIONS
+            SET amount=?, category=?, t_type=?, date=?, description=?
+            WHERE id=?
+        """, (amount, category, t_type, date, description, id))
+        self.conn.commit()

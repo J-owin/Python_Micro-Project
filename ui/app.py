@@ -5,43 +5,37 @@ from backend.transactions import Transaction
 class App:
     def __init__(self, root):
         self.root = root
-        self.root.title("FinSight")
+        self.root.title("Financial sight")
         self.root.geometry("600x500")
 
         self.db = DatabaseManager()
 
-        tk.Label(root, text="FinSight", font=("Arial", 20)).pack(pady=10)
+        tk.Label(root, text="Financial sight", font=("Arial", 20)).pack(pady=10)
 
         frame = tk.Frame(root)
         frame.pack(pady=10)
         self.summary_label = tk.Label(root, text="", font=("Arial", 14))
         self.summary_label.pack(pady=5)
-        # Amount
         tk.Label(frame, text="Amount").grid(row=0, column=0)
         self.amount = tk.Entry(frame)
         self.amount.grid(row=0, column=1)
 
-        # Category
         tk.Label(frame, text="Category").grid(row=1, column=0)
         self.category = tk.Entry(frame)
         self.category.grid(row=1, column=1)
 
-        # Type
         tk.Label(frame, text="Type").grid(row=2, column=0)
         self.t_type = tk.Entry(frame)
         self.t_type.grid(row=2, column=1)
 
-        # Date
         tk.Label(frame, text="Date").grid(row=3, column=0)
         self.date = tk.Entry(frame)
         self.date.grid(row=3, column=1)
 
-        # Description
         tk.Label(frame, text="Description").grid(row=4, column=0)
         self.description = tk.Entry(frame)
         self.description.grid(row=4, column=1)
 
-        # Button
         tk.Button(root, text="Add Transaction", command=self.add_transaction).pack(pady=10)
         tk.Button(root, text="Show Chart", command=self.show_chart).pack(pady=5)
         tk.Label(root, text="Delete by ID").pack()
@@ -57,7 +51,6 @@ class App:
         self.update_id_entry.pack(pady=5)
 
         tk.Button(root, text="Update Transaction", command=self.update_transaction).pack(pady=5)
-        # Output
         self.output = tk.Text(root, height=10)
         self.output.pack(pady=10)
         self.filter_var.trace("w", lambda *args: self.refresh_transactions())
